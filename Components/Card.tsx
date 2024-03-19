@@ -5,7 +5,7 @@ const Card: FC<CardProps> = ({ item }) => {
   const { imageUrl, title, subTitle, description, relatedTopics } = item;
 
   return (
-    <div className="h-custom-card-height w-[919px] rounded-[30px] border-[1px] bg-white p-[24px]">
+    <div className="h-custom-card-height w-[919px] rounded-[30px] border-[2px] bg-white p-[24px]">
       <div className="flex h-full w-full">
         <div className="h-full w-24">
           <Image src={imageUrl} alt="logo" width={64} height={64} />
