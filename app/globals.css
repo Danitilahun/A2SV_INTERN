@@ -18,16 +18,23 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: rgba(37, 33, 33, 0.774);
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.custom-text {
+  @apply font-semibold text-[12px];
+}
+
+.custom-color {
+  @apply text-[#7C8493];
+}
+
+.custome-style {
+  @apply h-[31px] rounded-[80px] p-[6px] gap-[8px] flex justify-center items-center;
 }

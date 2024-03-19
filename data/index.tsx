@@ -1,5 +1,3 @@
-import Card from "@/Components/Card";
-
 const data = [
   {
     imageUrl:
@@ -50,13 +48,3 @@ const data = [
     ],
   },
 ];
-
-export default function Home() {
-  return (
-    <main className="w-screen flex flex-col gap-4 items-center justify-center m-10">
-      {data.map((item, index) => (
-        <Card key={index} item={item} />
-      ))}
-    </main>
-  );
-}
