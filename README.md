@@ -1,6 +1,4 @@
-Task 1 Demo:
-
-Task 2 Demo: 
+Task 1 and Task 2 Demo: 
 
 Job List Page
 ![image](https://github.com/Danitilahun/A2SV_INTERN/assets/106193338/7fc43f77-f2a3-4e33-b9da-695586787126)
