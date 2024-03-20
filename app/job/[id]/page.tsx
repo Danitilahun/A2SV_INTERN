@@ -6,7 +6,7 @@ import { FaLocationDot } from "react-icons/fa6";
 const JobDetail = () => {
   return (
     <div className="flex flex-col items-center justify-center w-screen my-4">
-      <div className="flex flex-col px-10 w-custom-width">
+      <div className="flex flex-col w-custom-width gap-10">
         <div className="flex flex-col gap-2">
           <h1 className="font-bold text-2xl">Description</h1>
           <p>
