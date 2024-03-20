@@ -1,5 +1,5 @@
-import AttributesList from "@/Components/AttributesList";
-import TaskList from "@/Components/TaskList";
+import AttributesList from "@/components/AttributesList";
+import TaskList from "@/components/TaskList";
 import React from "react";
 import { FaLocationDot } from "react-icons/fa6";
 

@@ -4,6 +4,7 @@ import CardImage from "./CardImage";
 import CardHeader from "./CardHeader";
 import CardBody from "./CardBody";
 import CardTopics from "./CardTopics";
+
 const Card: React.FC<CardProps> = ({ item }) => {
   const { imageUrl, title, subTitle, description, relatedTopics } = item;
 

@@ -1,4 +1,4 @@
-import Card from "@/Components/Card";
+import Card from "@/components/Card";
 import data from "@/data/data.json";
 import Link from "next/link";
 import { FaAngleDown } from "react-icons/fa6";
