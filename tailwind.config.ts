@@ -29,6 +29,17 @@ const config: Config = {
         "custom-yellow": "#FFB836",
         "custom-blue": "#4640DE",
       },
+
+      // Add custom height
+      height: {
+        "custom-height": "500px", // Example custom height
+        "screen-75": "75vh", // 75% of the viewport height
+      },
+      // Add custom width
+      width: {
+        "custom-width": "919px", // Example custom width
+        "screen-50": "50vw", // 50% of the viewport width
+      },
     },
   },
   plugins: [],
