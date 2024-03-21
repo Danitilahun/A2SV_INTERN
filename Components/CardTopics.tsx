@@ -21,11 +21,21 @@ interface TopicItemProps {
 }
 
 const TopicItem: FC<TopicItemProps> = ({ topic, index }) => {
-  const colors = ["custom-bg-color", "custom-yellow", "custom-blue"]; // Class names for colors
-  const borderColor = ["", "border-custom-yellow", "border-custom-blue"]; // Border color classes
+  const colors = [
+    "text-custom-text-color",
+    "text-custom-yellow",
+    "text-custom-blue",
+  ]; // Class names for colors
+  const borderColor = [
+    "bg-custom-bg-color",
+    "border-custom-yellow",
+    "border-custom-blue",
+  ]; // Border color classes
   return (
-    <div className={`custome-style ${borderColor[index]} cursor-pointer`}>
-      <div className={`custom-text text-${colors[index]}`}>{topic}</div>
+    <div
+      className={`custome-style border ${borderColor[index]} cursor-pointer`}
+    >
+      <div className={`custom-text ${colors[index]}`}>{topic}</div>
     </div>
   );
 };
