@@ -5,17 +5,17 @@ import CardHeader from "./CardHeader";
 import CardBody from "./CardBody";
 import CardTopics from "./CardTopics";
 
-const Card: React.FC<CardProps> = ({ item }) => {
-  const { imageUrl, title, subTitle, description, relatedTopics } = item;
+const Card: React.FC<{ Opportunity: Opportunity }> = ({ Opportunity }) => {
+  const { logoUrl, title, orgName, description, categories } = Opportunity;
 
   return (
     <div className="h-custom-card-height w-[919px] rounded-[30px] border-[2px] bg-white p-[24px]">
       <div className="flex h-full w-full">
-        <CardImage imageUrl={imageUrl} />
+        <CardImage imageUrl={logoUrl} />
         <div className="h-full w-[755px] flex flex-col gap-[8px]">
-          <CardHeader title={title} subTitle={subTitle} />
+          <CardHeader title={title} subTitle={orgName} />
           <CardBody description={description} />
-          <CardTopics relatedTopics={relatedTopics} />
+          <CardTopics relatedTopics={categories} />
         </div>
       </div>
     </div>

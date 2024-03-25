@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Epilogue } from "next/font/google";
 import "./globals.css";
+import { Providers } from "./provider";
 
 const epilogue = Epilogue({ subsets: ["latin"] });
 
@@ -15,8 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={epilogue.className}>{children}</body>
-    </html>
+    <Providers>
+      <html lang="en">
+        <body className={epilogue.className}>{children}</body>
+      </html>
+    </Providers>
   );
 }

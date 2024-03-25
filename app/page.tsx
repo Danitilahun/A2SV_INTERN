@@ -1,32 +1,35 @@
-import Card from "@/components/Card";
-import data from "@/data/data.json";
-import Link from "next/link";
-import { FaAngleDown } from "react-icons/fa6";
+"use client";
+
+import { useGetOpportunitiesQuery } from "@/lib/api/job/jobSlice";
+import { setOpportunities } from "@/lib/features/job/jobSlice";
+import { redirect } from "next/navigation";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 export default function Home() {
-  return (
-    <main className="w-screen flex flex-col gap-4 items-center justify-center m-10">
-      <div className="w-custom-width flex justify-between items-start mb-4">
-        <div className="flex flex-col">
-          <h1 className="text-3xl font-bold text-custom-text-darkblue">
-            Opportunities
-          </h1>
-          <p>Showing 73 results</p>
-        </div>
+  const {
+    data: opportunities,
+    isLoading,
+    isError,
+  } = useGetOpportunitiesQuery();
 
-        <div className="flex gap-1">
-          <p>Sort by : </p>
-          <div className="flex items-center gap-1">
-            <p> Most relevant</p>
-            <FaAngleDown />
-          </div>
-        </div>
-      </div>
-      {data.map((item, index) => (
-        <Link key={index} href={`/job/${index}`}>
-          <Card key={index} item={item} />{" "}
-        </Link>
-      ))}
-    </main>
-  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (opportunities) {
+      dispatch(setOpportunities(opportunities.data));
+    }
+  }, [opportunities, dispatch]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error fetching opportunities</div>;
+  }
+
+  console.log(opportunities);
+
+  redirect("/job");
 }
