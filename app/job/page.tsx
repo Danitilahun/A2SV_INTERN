@@ -6,19 +6,7 @@ import Card from "@/components/Card";
 import { useGetOpportunitiesQuery } from "@/lib/api/job/jobSlice";
 
 const Job = () => {
-  const {
-    data: opportunities,
-    isLoading,
-    isError,
-  } = useGetOpportunitiesQuery();
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (isError) {
-    return <div>Error fetching opportunities</div>;
-  }
+  const { data: opportunities } = useGetOpportunitiesQuery();
   return (
     <main className="w-screen flex flex-col gap-4 items-center justify-center m-10">
       <div className="w-custom-width flex justify-between items-start mb-4">
@@ -39,7 +27,7 @@ const Job = () => {
       </div>
       {opportunities?.data?.slice(2).map((item, index) => (
         <Link key={index} href={`/job/${item.id}`}>
-          <Card key={index} Opportunity={item} />
+          <Card key={index} Opportunity={item} />{" "}
         </Link>
       ))}
     </main>
