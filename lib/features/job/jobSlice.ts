@@ -1,10 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-// Define the type for your entire Redux state
-interface RootState {
-  jobs: JobState; // Assuming 'jobs' is the slice name
-}
-
 interface JobState {
   opportunities: Opportunity[];
   selectedOpportunity: Opportunity | null;

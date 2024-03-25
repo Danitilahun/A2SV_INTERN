@@ -1,10 +1,8 @@
 "use client";
-
 import { useGetOpportunitiesQuery } from "@/lib/api/job/jobSlice";
 import { setOpportunities } from "@/lib/features/job/jobSlice";
-import { redirect } from "next/navigation";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "@/lib/store";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const {
@@ -16,7 +14,7 @@ export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (opportunities) {
+    if (opportunities && opportunities.data) {
       dispatch(setOpportunities(opportunities.data));
     }
   }, [opportunities, dispatch]);
@@ -31,5 +29,5 @@ export default function Home() {
 
   console.log(opportunities);
 
-  redirect("/job");
+  return <div>Redirecting...</div>;
 }

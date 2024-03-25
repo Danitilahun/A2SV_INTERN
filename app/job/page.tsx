@@ -1,16 +1,18 @@
 "use client";
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { FaAngleDown } from "react-icons/fa6";
 import Link from "next/link";
 import Card from "@/components/Card";
-import { useSelector } from "react-redux";
+import { useSelector } from "@/lib/store";
 
 const Job = () => {
-  const OpportunitiesList = useSelector(
-    (state: RootState) => state.jobs.opportunities
-  );
+  const { opportunities } = useSelector((state) => state.jobs);
 
-  console.log(OpportunitiesList);
+  useEffect(() => {
+    if (opportunities) {
+      console.log(opportunities);
+    }
+  }, [opportunities]);
   return (
     <main className="w-screen flex flex-col gap-4 items-center justify-center m-10">
       <div className="w-custom-width flex justify-between items-start mb-4">
@@ -29,7 +31,7 @@ const Job = () => {
           </div>
         </div>
       </div>
-      {OpportunitiesList?.map((item, index) => (
+      {opportunities?.map((item, index) => (
         <Link key={index} href={`/job/${item.id}`}>
           <Card key={index} Opportunity={item} />{" "}
         </Link>
