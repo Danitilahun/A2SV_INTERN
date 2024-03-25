@@ -1,18 +1,24 @@
 "use client";
-import React, { FC, useEffect } from "react";
+import React from "react";
 import { FaAngleDown } from "react-icons/fa6";
 import Link from "next/link";
 import Card from "@/components/Card";
-import { useSelector } from "@/lib/store";
+import { useGetOpportunitiesQuery } from "@/lib/api/job/jobSlice";
 
 const Job = () => {
-  const { opportunities } = useSelector((state) => state.jobs);
+  const {
+    data: opportunities,
+    isLoading,
+    isError,
+  } = useGetOpportunitiesQuery();
 
-  useEffect(() => {
-    if (opportunities) {
-      console.log(opportunities);
-    }
-  }, [opportunities]);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error fetching opportunities</div>;
+  }
   return (
     <main className="w-screen flex flex-col gap-4 items-center justify-center m-10">
       <div className="w-custom-width flex justify-between items-start mb-4">
@@ -31,9 +37,9 @@ const Job = () => {
           </div>
         </div>
       </div>
-      {opportunities?.map((item, index) => (
+      {opportunities?.data?.slice(2).map((item, index) => (
         <Link key={index} href={`/job/${item.id}`}>
-          <Card key={index} Opportunity={item} />{" "}
+          <Card key={index} Opportunity={item} />
         </Link>
       ))}
     </main>

@@ -1,5 +1,3 @@
-import Image from "next/image";
-import { FC } from "react";
 import CardImage from "./CardImage";
 import CardHeader from "./CardHeader";
 import CardBody from "./CardBody";
