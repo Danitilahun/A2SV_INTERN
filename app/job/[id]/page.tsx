@@ -10,8 +10,9 @@ import React from "react";
 
 const JobDetail = () => {
   const pathname = usePathname();
-  console.log(pathname.split("/")[2]);
+
   const { data: opportunities } = useGetOpportunitiesQuery();
+
   const opportunity = opportunities?.data.find(
     (item) => item.id === pathname.split("/")[2]
   );
