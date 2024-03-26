@@ -6,7 +6,9 @@ import Card from "@/components/Card";
 import { useGetOpportunitiesQuery } from "@/lib/api/job/jobSlice";
 
 const Job = () => {
+  // Fetch the opportunities
   const { data: opportunities } = useGetOpportunitiesQuery();
+
   return (
     <main className="w-screen flex flex-col gap-4 items-center justify-center m-10">
       <div className="w-custom-width flex justify-between items-start mb-4">
