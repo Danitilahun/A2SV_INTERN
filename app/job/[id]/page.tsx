@@ -3,18 +3,12 @@ import DescriptionSection from "@/components/DescriptionSection";
 import IdealCandidateSection from "@/components/IdealCandidateSection";
 import ResponsibilitiesSection from "@/components/ResponsibilitiesSection";
 import WhenWhereSection from "@/components/WhenWhereSection";
-import {
-  useGetOpportunitiesQuery,
-  useGetOpportunityByIdQuery,
-} from "@/lib/api/job/jobSlice";
-import { usePathname } from "next/navigation";
+import { useGetOpportunityByIdQuery } from "@/lib/api/job/jobSlice";
 
 import React from "react";
 
-const JobDetail = () => {
-  // Get the id from the pathname
-  const pathname = usePathname();
-  const id: String = pathname.split("/")[2];
+const JobDetail = ({ params }: { params: { id: string } }) => {
+  const id: String = params.id;
 
   // Fetch the opportunity by id
   const { data: opportunity } = useGetOpportunityByIdQuery(id);
