@@ -12,15 +12,19 @@ import { usePathname } from "next/navigation";
 import React from "react";
 
 const JobDetail = () => {
+  // Get the id from the pathname
   const pathname = usePathname();
   const id: String = pathname.split("/")[2];
+
+  // Fetch the opportunity by id
   const { data: opportunity } = useGetOpportunityByIdQuery(id);
-  console.log(opportunity);
+
+  // Split the responsibilities string into an array of strings
   const responsibilities =
     opportunity?.data?.responsibilities.split("\n") || [];
-  const idealCandidate = opportunity?.data?.idealCandidate.split("\n") || [];
 
-  console.log("idealCandidate", idealCandidate);
+  // Split the idealCandidate string into an array of strings
+  const idealCandidate = opportunity?.data?.idealCandidate.split("\n") || [];
 
   return (
     <div className="flex flex-col items-center justify-center w-screen my-4">

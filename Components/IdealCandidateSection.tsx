@@ -1,9 +1,8 @@
 import { FC } from "react";
-import AttributesList from "./AttributesList";
 
-const IdealCandidateSection: FC<{
-  idealCandidate: String[];
-}> = ({ idealCandidate }) => {
+const IdealCandidateSection: FC<{ idealCandidate: String[] }> = ({
+  idealCandidate,
+}) => {
   return (
     <div className="flex flex-col gap-2">
       <h1 className="font-bold text-2xl">Ideal Candidate we want</h1>
