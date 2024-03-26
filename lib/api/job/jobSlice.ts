@@ -8,7 +8,7 @@ export const apiSlice = createApi({
     getOpportunities: builder.query<Opportunities, void>({
       query: () => "opportunities/search",
     }),
-    getOpportunityById: builder.query<Opportunity, number>({
+    getOpportunityById: builder.query<SingleOpportunities, String>({
       query: (id) => `opportunities/${id}`,
     }),
   }),

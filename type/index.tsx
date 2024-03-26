@@ -25,6 +25,13 @@ interface Opportunities {
   count: number;
 }
 
+interface SingleOpportunities {
+  data: Opportunity; // Replace 'any' with the actual type of data in your array
+  success: boolean;
+  message: string;
+  errors: null | any; // Replace 'any' with the actual type of errors if applicable
+  count: number;
+}
 interface Opportunity {
   id: string;
   title: string;
