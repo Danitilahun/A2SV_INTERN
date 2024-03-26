@@ -15,8 +15,12 @@ const JobDetail = () => {
   const pathname = usePathname();
   const id: String = pathname.split("/")[2];
   const { data: opportunity } = useGetOpportunityByIdQuery(id);
+  console.log(opportunity);
   const responsibilities =
     opportunity?.data?.responsibilities.split("\n") || [];
+  const idealCandidate = opportunity?.data?.idealCandidate.split("\n") || [];
+
+  console.log("idealCandidate", idealCandidate);
 
   return (
     <div className="flex flex-col items-center justify-center w-screen my-4">
@@ -25,8 +29,10 @@ const JobDetail = () => {
           description={opportunity?.data?.description || ""}
         />
         <ResponsibilitiesSection responsibilities={responsibilities} />
-        <IdealCandidateSection />
-        <WhenWhereSection />
+        <IdealCandidateSection idealCandidate={idealCandidate} />
+        <WhenWhereSection
+          whenAndWhere={opportunity?.data?.whenAndWhere || ""}
+        />
       </div>
     </div>
   );
