@@ -3,10 +3,6 @@ interface JobState {
   selectedOpportunity: Opportunity | null;
 }
 
-interface RootState {
-  jobs: JobState; // Assuming 'jobs' is the slice name
-}
-
 interface Opportunities {
   data: any[]; // Replace 'any' with the actual type of data in your array
   success: boolean;
