@@ -8,6 +8,7 @@ import { useGetOpportunityByIdQuery } from "@/lib/api/job/jobSlice";
 import React from "react";
 
 const JobDetail = ({ params }: { params: { id: string } }) => {
+  // Extract the id from the params object
   const id: String = params.id;
 
   // Fetch the opportunity by id
