@@ -15,7 +15,6 @@ const JobDetail = () => {
   const pathname = usePathname();
   const id: String = pathname.split("/")[2];
   const { data: opportunity } = useGetOpportunityByIdQuery(id);
-  console.log("opportunities", opportunity);
   const responsibilities =
     opportunity?.data?.responsibilities.split("\n") || [];
 
