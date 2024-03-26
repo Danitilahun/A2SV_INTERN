@@ -1,13 +1,3 @@
-interface CardProps {
-  item: {
-    imageUrl: string;
-    title: string;
-    subTitle: string;
-    description: string;
-    relatedTopics: string[];
-  };
-}
-
 interface JobState {
   opportunities: Opportunity[];
   selectedOpportunity: Opportunity | null;
