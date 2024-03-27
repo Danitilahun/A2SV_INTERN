@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const SignUp = () => {
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center text-[14px]">
       <div className="h-screen flex justify-center flex-col gap-3 items-center w-[50%]">
         <div className="text-4xl leading-9 text-center font-extrabold w-[50%]">
           Sign Up Today!
