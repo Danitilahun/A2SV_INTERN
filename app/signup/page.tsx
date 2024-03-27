@@ -3,6 +3,8 @@ import { FcGoogle } from "react-icons/fc";
 import InputField from "./(component)/InputField";
 import { fields } from "./(constants)/formFields";
 import Link from "next/link";
+import HorizontalLineWithText from "./(component)/HorizontalLineWithText";
+import TermsAndPrivacyText from "./(component)/TermsAndPrivacyText";
 
 const SignUp = () => {
   return (
@@ -16,16 +18,7 @@ const SignUp = () => {
           <span className="font-[700]">Sign Up with Google</span>
         </button>
 
-        <div className="relative flex flex-col items-center w-[50%]">
-          <div className="flex justify-center items-center w-full">
-            {/* Increased the border thickness for better visibility */}
-            <div className="flex-grow border-t-2 border-gray-300"></div>
-            <span className="px-4 text-gray-900 bg-white dark:bg-gray-900 dark:text-white">
-              Or Sign Up with Email
-            </span>
-            <div className="flex-grow border-t-2 border-gray-300"></div>
-          </div>
-        </div>
+        <HorizontalLineWithText text="Or Sign Up with Email" />
 
         {fields.map((fields, index) => (
           <InputField
@@ -39,27 +32,14 @@ const SignUp = () => {
           Continue
         </button>
 
-        <div className="flex gap-3 w-[50%]">
+        <div className="flex gap-1 w-[50%]">
           <span className="text-gray-700">Already have an account?</span>
           <Link href="/signin" className="text-primary-500 font-semibold">
             Login
           </Link>
         </div>
 
-        <div className="w-[50%]">
-          <span className="text-gray-700">
-            By clicking {"Continue"}, you acknowledge that you have read and
-            accepted our{" "}
-          </span>
-          <Link href="/" className="text-primary-500 font-semibold">
-            Terms of Service
-          </Link>
-          <span className="text-gray-700"> and</span>
-          <Link href="/" className="text-primary-500 font-semibold">
-            {" "}
-            Privacy Policy
-          </Link>
-        </div>
+        <TermsAndPrivacyText text="By clicking 'Continue', you acknowledge that you have read and accepted our" />
       </div>
     </div>
   );
