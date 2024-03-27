@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      margin: {
+        auto: "auto",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -24,6 +27,18 @@ const config: Config = {
         "custom-bg-color": "#e0f5ef",
         "custom-bg-gray": "#7C8493",
         "custom-text-darkblue": "#25324B",
+        primary: {
+          50: "#eae9f8",
+          100: "#d0cdf2",
+          200: "#b4b1ec",
+          300: "#9793e6",
+          400: "#7b77e0",
+          500: "#645ed6", // Base color
+          600: "#534dc2",
+          700: "#423cad",
+          800: "#312a98",
+          900: "#211b82",
+        },
       },
       borderColor: {
         "custom-yellow": "#FFB836",
