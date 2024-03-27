@@ -18,7 +18,7 @@ const OTPInput: ForwardRefRenderFunction<HTMLInputElement, OTPInputProps> = (
       onChange={onChange}
       maxLength={1}
       placeholder="0"
-      className="w-[25%] h-12 px-2 border border-2 border-purple-500 rounded-md focus:outline-none focus:ring focus:ring-blue-400 flex items-center justify-center text-center font-semibold text-lg"
+      className="w-[20%] h-12 px-2 border-2 border-purple-500 rounded-md focus:outline-none focus:ring focus:ring-blue-400 flex items-center justify-center text-center font-semibold text-lg"
       ref={ref}
     />
   );

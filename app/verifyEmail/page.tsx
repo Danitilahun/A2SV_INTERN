@@ -81,7 +81,7 @@ const VerifyEmail = () => {
             code here.
           </span>
         </div>
-        <div className="flex gap-2 w-[50%] items-center justify-center">
+        <div className="flex gap-2 w-[50%] items-center justify-between">
           {otp.map((value, index) => (
             <OTPInput
               key={index}
