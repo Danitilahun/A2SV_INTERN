@@ -3,11 +3,16 @@ import React from "react";
 interface InputFieldProps {
   label: string;
   placeholder: string;
+  width?: string; // Make width prop optional
 }
 
-const InputField: React.FC<InputFieldProps> = ({ label, placeholder }) => {
+const InputField: React.FC<InputFieldProps> = ({
+  label,
+  placeholder,
+  width = "w-[50%]",
+}) => {
   return (
-    <div className="w-[50%]">
+    <div className={width}>
       <label className="block text-sm font-medium text-gray-700">{label}</label>
       <input
         type="text"

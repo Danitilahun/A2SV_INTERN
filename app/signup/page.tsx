@@ -1,9 +1,9 @@
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
-import InputField from "./(component)/InputField";
+import InputField from "../../components/InputField";
 import { fields } from "./(constants)/formFields";
 import Link from "next/link";
-import HorizontalLineWithText from "./(component)/HorizontalLineWithText";
+import HorizontalLineWithText from "../../components/HorizontalLineWithText";
 import TermsAndPrivacyText from "./(component)/TermsAndPrivacyText";
 
 const SignUp = () => {
@@ -15,7 +15,9 @@ const SignUp = () => {
         </div>
         <button className="w-[50%] h-auto rounded-lg border border-gray-300 px-4 py-3 mx-4 my-2 flex items-center justify-center gap-2">
           <FcGoogle size={25} />
-          <span className="font-[700]">Sign Up with Google</span>
+          <span className="font-[700] text-primary-500">
+            Sign Up with Google
+          </span>
         </button>
 
         <HorizontalLineWithText text="Or Sign Up with Email" />

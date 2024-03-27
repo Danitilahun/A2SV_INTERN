@@ -7,7 +7,7 @@ interface TermsAndPrivacyTextProps {
 
 const TermsAndPrivacyText: React.FC<TermsAndPrivacyTextProps> = ({ text }) => {
   return (
-    <div className="w-[50%]">
+    <div className="w-[50%] text-[12px]">
       <span className="text-gray-700">
         {text}{" "}
         <Link href="/" className="text-primary-500 font-semibold">
