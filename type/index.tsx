@@ -8,11 +8,17 @@ interface LoginCredentials {
   password: string;
 }
 
+interface EmailVerificationData {
+  email: string;
+  otp: string;
+}
+
 interface SignupCredentials {
-  username: string;
+  name: string;
   email: string;
   password: string;
   confirmPassword: string;
+  role: "student" | "organization";
 }
 
 interface Opportunities {

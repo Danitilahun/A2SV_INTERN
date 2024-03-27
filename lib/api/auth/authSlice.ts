@@ -12,20 +12,29 @@ export const authApi = createApi({
   endpoints: (builder) => ({
     login: builder.mutation<any, LoginCredentials>({
       query: (credentials) => ({
-        url: "auth/login",
+        url: "/login",
         method: "POST",
         body: credentials,
       }),
     }),
     signup: builder.mutation<any, SignupCredentials>({
       query: (credentials) => ({
-        url: "auth/signup",
+        url: "/signup",
         method: "POST",
         body: credentials,
+      }),
+    }),
+
+    verifyEmail: builder.mutation<any, EmailVerificationData>({
+      query: (verificationData) => ({
+        url: "/verify-email",
+        method: "POST",
+        body: verificationData,
       }),
     }),
   }),
 });
 
 // Destructure the generated hooks for usage
-export const { useLoginMutation, useSignupMutation } = authApi;
+export const { useLoginMutation, useSignupMutation, useVerifyEmailMutation } =
+  authApi;
