@@ -3,19 +3,31 @@ interface JobState {
   selectedOpportunity: Opportunity | null;
 }
 
+interface LoginCredentials {
+  email: string;
+  password: string;
+}
+
+interface SignupCredentials {
+  username: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
 interface Opportunities {
-  data: any[]; // Replace 'any' with the actual type of data in your array
+  data: any[];
   success: boolean;
   message: string;
-  errors: null | any; // Replace 'any' with the actual type of errors if applicable
+  errors: null | any;
   count: number;
 }
 
 interface SingleOpportunities {
-  data: Opportunity; // Replace 'any' with the actual type of data in your array
+  data: Opportunity;
   success: boolean;
   message: string;
-  errors: null | any; // Replace 'any' with the actual type of errors if applicable
+  errors: null | any;
   count: number;
 }
 interface Opportunity {

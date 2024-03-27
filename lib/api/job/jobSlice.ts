@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // Define an API slice
-export const apiSlice = createApi({
+export const jobApi = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: "https://akil-backend.onrender.com" }),
   endpoints: (builder) => ({
@@ -14,5 +14,4 @@ export const apiSlice = createApi({
   }),
 });
 
-export const { useGetOpportunitiesQuery, useGetOpportunityByIdQuery } =
-  apiSlice;
+export const { useGetOpportunitiesQuery, useGetOpportunityByIdQuery } = jobApi;

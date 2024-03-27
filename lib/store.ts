@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { apiSlice } from "./api/job/jobSlice";
+import { jobApi } from "./api/job/jobSlice";
+import { authApi } from "./api/auth/authSlice";
 import {
   TypedUseSelectorHook,
   useDispatch as useAppDispatch,
@@ -7,8 +8,6 @@ import {
 } from "react-redux";
 import jobReducer from "./features/job/jobSlice";
 
-// Define the root state type using the ReturnType utility of TypeScript
-// Correctly define the root state type using the store's getState method
 export type RootState = ReturnType<typeof store.getState>;
 
 // Define the type for dispatching actions from the store
@@ -17,10 +16,11 @@ export type AppDispatch = typeof store.dispatch;
 const store = configureStore({
   reducer: {
     jobs: jobReducer,
-    [apiSlice.reducerPath]: apiSlice.reducer,
+    [jobApi.reducerPath]: jobApi.reducer,
+    [authApi.reducerPath]: authApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(apiSlice.middleware),
+    getDefaultMiddleware().concat(jobApi.middleware, authApi.middleware),
 });
 
 // Extract the dispatch function from the store for convenience
