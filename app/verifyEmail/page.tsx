@@ -2,11 +2,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import OTPInput from "./(component)/OTPInput";
 import { useVerifyEmailMutation } from "@/lib/api/auth/authSlice";
+import { redirect } from "next/navigation";
 
 const VerifyEmail = () => {
   const [otp, setOtp] = useState(["", "", "", ""]);
   const inputsRef = useRef<(HTMLInputElement | null)[]>([]);
   const [timeLeft, setTimeLeft] = useState(30);
+  const [jobRedirect, setJobRedirect] = useState(false);
 
   // Countdown timer for resend code
   useEffect(() => {
@@ -34,23 +36,28 @@ const VerifyEmail = () => {
   };
 
   // Implement the mutation hook and submission logic
-  const [verifyEmail, { isLoading, error }] = useVerifyEmailMutation();
+  const [verifyEmail, { isLoading }] = useVerifyEmailMutation();
 
   const handleSubmit = async () => {
-    // Convert the OTP array into a string
     const otpCode = otp.join("");
     try {
       console.log({ otp: otpCode, email: "tiledan2015@gmail.com" });
-      await verifyEmail({
+      const res = await verifyEmail({
         otp: otpCode,
         email: "tiledan2015@gmail.com",
       }).unwrap();
-      console.log("Email verified successfully");
+      setJobRedirect(true);
+      console.log("Email verification successful:", res);
     } catch (err) {
       console.error("Email verification failed:", err);
     }
   };
 
+  useEffect(() => {
+    if (jobRedirect) {
+      redirect("/verifyEmail");
+    }
+  }, [jobRedirect]);
   return (
     <div className="flex flex-col justify-center items-center text-[14px]">
       <div className="h-screen flex justify-center flex-col gap-10 items-center w-[50%]">
@@ -85,7 +92,9 @@ const VerifyEmail = () => {
           </span>
         </div>
         <button
-          onSubmit={handleSubmit}
+          onClick={handleSubmit}
+          disabled={isLoading}
+          style={{ opacity: isLoading ? 0.5 : 1 }}
           className="w-[50%] h-auto rounded-[80px] border text-white bg-primary-500 border-gray-300 px-4 py-3 mx-4 my-2 flex items-center justify-center gap-2"
         >
           Continue

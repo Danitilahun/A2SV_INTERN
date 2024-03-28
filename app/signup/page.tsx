@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import InputField from "../../components/InputField";
 import { fields } from "./(constants)/formFields";
@@ -17,6 +17,7 @@ const SignUp = () => {
     confirmPassword: "",
     role: "student",
   });
+  const [verifyRedirect, setVerifyRedirect] = useState(false);
 
   const [signup, { isLoading }] = useSignupMutation();
 
@@ -31,11 +32,18 @@ const SignUp = () => {
       console.log("Form values:", formValues);
       const response = await signup(formValues).unwrap();
       console.log("Signup successful:", response);
-      redirect("/job");
+      setVerifyRedirect(true);
     } catch (error) {
       console.error("Signup error:", error);
     }
   };
+
+  useEffect(() => {
+    if (verifyRedirect) {
+      redirect("/verifyEmail");
+    }
+  }, [verifyRedirect]);
+
   return (
     <div className="flex justify-center items-center text-[14px]">
       <div className="h-screen flex justify-center flex-col gap-3 items-center w-[50%]">
@@ -75,6 +83,7 @@ const SignUp = () => {
           <button
             type="submit"
             disabled={isLoading}
+            style={{ opacity: isLoading ? 0.5 : 1 }}
             className="w-full h-auto rounded-[80px] border text-white bg-primary-500 border-gray-300 px-4 py-3 mx-4 my-2 flex items-center justify-center gap-2"
           >
             Continue
