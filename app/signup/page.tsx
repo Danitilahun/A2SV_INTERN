@@ -8,6 +8,9 @@ import HorizontalLineWithText from "../../components/HorizontalLineWithText";
 import TermsAndPrivacyText from "./(component)/TermsAndPrivacyText";
 import { useSignupMutation } from "@/lib/api/auth/authSlice";
 import { redirect } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/lib/store";
+import { setEmail } from "@/lib/features/auth/authSlice";
 
 const SignUp = () => {
   const [formValues, setFormValues] = useState<SignupCredentials>({
@@ -17,7 +20,9 @@ const SignUp = () => {
     confirmPassword: "",
     role: "student",
   });
+
   const [verifyRedirect, setVerifyRedirect] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
 
   const [signup, { isLoading }] = useSignupMutation();
 
@@ -33,6 +38,7 @@ const SignUp = () => {
       const response = await signup(formValues).unwrap();
       console.log("Signup successful:", response);
       setVerifyRedirect(true);
+      dispatch(setEmail(formValues.email));
     } catch (error) {
       console.error("Signup error:", error);
     }

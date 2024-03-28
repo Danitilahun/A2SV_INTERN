@@ -6,6 +6,9 @@ import Link from "next/link";
 import { fields } from "./(constants)/formFields";
 import { useLoginMutation } from "@/lib/api/auth/authSlice";
 import { redirect } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/lib/store";
+import { setEmail, setUser } from "@/lib/features/auth/authSlice";
 
 const SignIn = () => {
   const [formValues, setFormValues] = useState<LoginCredentials>({
@@ -14,6 +17,8 @@ const SignIn = () => {
   });
 
   const [login, { isLoading }] = useLoginMutation();
+  const dispatch = useDispatch<AppDispatch>();
+
   const [jobRedirect, setJobRedirect] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,6 +32,7 @@ const SignIn = () => {
       console.log("Form values:", formValues);
       const response = await login(formValues).unwrap();
       console.log("login successful:", response);
+      dispatch(setUser(response.data));
       setJobRedirect(true);
     } catch (error) {
       console.error("Signup error:", error);

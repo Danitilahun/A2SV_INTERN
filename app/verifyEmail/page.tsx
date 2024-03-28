@@ -1,15 +1,19 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, use } from "react";
 import OTPInput from "./(component)/OTPInput";
 import { useVerifyEmailMutation } from "@/lib/api/auth/authSlice";
 import { redirect } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootStore } from "@/lib/store";
+import { setUser } from "@/lib/features/auth/authSlice";
 
 const VerifyEmail = () => {
   const [otp, setOtp] = useState(["", "", "", ""]);
   const inputsRef = useRef<(HTMLInputElement | null)[]>([]);
   const [timeLeft, setTimeLeft] = useState(30);
   const [jobRedirect, setJobRedirect] = useState(false);
-
+  const { user } = useSelector((state: RootStore) => state.auth);
+  const dispatch = useDispatch<AppDispatch>();
   // Countdown timer for resend code
   useEffect(() => {
     if (timeLeft === 0) {
@@ -28,7 +32,6 @@ const VerifyEmail = () => {
     const newOtp = [...otp];
     newOtp[index] = element.target.value;
     setOtp(newOtp);
-
     // Move focus to next input
     if (element.target.value && index < otp.length - 1) {
       inputsRef.current[index + 1]?.focus();
@@ -44,9 +47,10 @@ const VerifyEmail = () => {
       console.log({ otp: otpCode, email: "tiledan2015@gmail.com" });
       const res = await verifyEmail({
         otp: otpCode,
-        email: "tiledan2015@gmail.com",
+        email: user?.email || "",
       }).unwrap();
       setJobRedirect(true);
+      dispatch(setUser(res.data));
       console.log("Email verification successful:", res);
     } catch (err) {
       console.error("Email verification failed:", err);
@@ -58,6 +62,7 @@ const VerifyEmail = () => {
       redirect("/job");
     }
   }, [jobRedirect]);
+
   return (
     <div className="flex flex-col justify-center items-center text-[14px]">
       <div className="h-screen flex justify-center flex-col gap-10 items-center w-[50%]">

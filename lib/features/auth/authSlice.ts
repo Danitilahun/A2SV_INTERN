@@ -5,7 +5,16 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  user: null,
+  user: {
+    accessToken: "",
+    email: "",
+    name: "",
+    profileComplete: true,
+    profilePicUrl: "",
+    profileStatus: "",
+    refreshToken: "",
+    role: "",
+  },
 };
 
 const authSlice = createSlice({
