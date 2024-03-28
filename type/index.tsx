@@ -8,6 +8,17 @@ interface LoginCredentials {
   password: string;
 }
 
+interface User {
+  accessToken: string | null;
+  email: string | null;
+  name: string | null;
+  profileComplete: boolean;
+  profilePicUrl: string | null;
+  profileStatus: string | null;
+  refreshToken: string | null;
+  role: string | null;
+}
+
 interface EmailVerificationData {
   email: string;
   otp: string;
