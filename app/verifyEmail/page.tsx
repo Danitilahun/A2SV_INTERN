@@ -1,27 +1,3 @@
-// import React from "react";
-// import OTPInput from "./(component)/OTPInput";
-
-// const VerifyEmail = () => {
-//   return (
-//     <div className="flex flex-col justify-center items-center text-[14px]">
-//       <div className="h-screen flex justify-center flex-col gap-3 items-center w-[50%]">
-//         <div className="text-4xl leading-9 text-center font-extrabold w-[50%]">
-//           Verify Email
-//         </div>
-
-//         <div className="w-[50%] text-[12px]">
-//           <span className="text-gray-700">
-//             We&apos;ve sent a verification code to the email address you
-//             provided. To complete the verification process, please enter the
-//             code here.
-//           </span>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default VerifyEmail;
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import OTPInput from "./(component)/OTPInput";
@@ -29,7 +5,7 @@ import { useVerifyEmailMutation } from "@/lib/api/auth/authSlice";
 
 const VerifyEmail = () => {
   const [otp, setOtp] = useState(["", "", "", ""]);
-  const inputsRef = useRef([]);
+  const inputsRef = useRef<(HTMLInputElement | null)[]>([]);
   const [timeLeft, setTimeLeft] = useState(30);
 
   // Countdown timer for resend code
@@ -43,28 +19,35 @@ const VerifyEmail = () => {
     return () => clearInterval(intervalId);
   }, [timeLeft]);
 
-  const handleChange = (element, index) => {
+  const handleChange: (
+    element: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => void = (element, index) => {
     const newOtp = [...otp];
     newOtp[index] = element.target.value;
     setOtp(newOtp);
 
     // Move focus to next input
     if (element.target.value && index < otp.length - 1) {
-      inputsRef.current[index + 1].focus();
+      inputsRef.current[index + 1]?.focus();
     }
   };
 
   // Implement the mutation hook and submission logic
-  const [verifyEmail, { data, loading, error }] = useVerifyEmailMutation();
+  const [verifyEmail, { isLoading, error }] = useVerifyEmailMutation();
 
   const handleSubmit = async () => {
     // Convert the OTP array into a string
     const otpCode = otp.join("");
     try {
-      await verifyEmail({ variables: { otpCode } });
-      // Handle success response
+      console.log({ otp: otpCode, email: "tiledan2015@gmail.com" });
+      await verifyEmail({
+        otp: otpCode,
+        email: "tiledan2015@gmail.com",
+      }).unwrap();
+      console.log("Email verified successfully");
     } catch (err) {
-      // Handle error
+      console.error("Email verification failed:", err);
     }
   };
 
@@ -88,7 +71,7 @@ const VerifyEmail = () => {
               name={`otp-${index}`}
               value={value}
               onChange={(e) => handleChange(e, index)}
-              ref={(el) => (inputsRef.current[index] = el)}
+              ref={(el) => (inputsRef.current[index] = el!)}
             />
           ))}
         </div>
@@ -101,7 +84,10 @@ const VerifyEmail = () => {
             in {timeLeft}s
           </span>
         </div>
-        <button className="w-[50%] h-auto rounded-[80px] border text-white bg-primary-500 border-gray-300 px-4 py-3 mx-4 my-2 flex items-center justify-center gap-2">
+        <button
+          onSubmit={handleSubmit}
+          className="w-[50%] h-auto rounded-[80px] border text-white bg-primary-500 border-gray-300 px-4 py-3 mx-4 my-2 flex items-center justify-center gap-2"
+        >
           Continue
         </button>
       </div>
