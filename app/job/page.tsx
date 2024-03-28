@@ -10,7 +10,7 @@ const Job = () => {
   const { data: opportunities } = useGetOpportunitiesQuery();
 
   return (
-    <main className="w-screen flex flex-col gap-4 items-center justify-center m-10">
+    <main className="w-screen flex flex-col gap-4 items-center justify-center">
       <div className="w-custom-width flex justify-between items-start mb-4">
         <div className="flex flex-col">
           <h1 className="text-3xl font-bold text-custom-text-darkblue">

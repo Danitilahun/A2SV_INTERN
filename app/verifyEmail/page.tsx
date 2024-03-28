@@ -6,6 +6,8 @@ import { redirect } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootStore } from "@/lib/store";
 import { setUser } from "@/lib/features/auth/authSlice";
+import { SuccessToast } from "@/components/successToast";
+import { ErrorToast } from "@/components/errorToast";
 
 const VerifyEmail = () => {
   const [otp, setOtp] = useState(["", "", "", ""]);
@@ -50,10 +52,12 @@ const VerifyEmail = () => {
         email: user?.email || "",
       }).unwrap();
       setJobRedirect(true);
+      SuccessToast("OTP Verified Successfully!");
       dispatch(setUser(res.data));
       console.log("Email verification successful:", res);
-    } catch (err) {
+    } catch (err: any) {
       console.error("Email verification failed:", err);
+      ErrorToast(err.data.message || "Invalid OTP. Please try again.");
     }
   };
 

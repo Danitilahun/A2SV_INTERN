@@ -9,6 +9,8 @@ import { redirect } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/lib/store";
 import { setEmail, setUser } from "@/lib/features/auth/authSlice";
+import { SuccessToast } from "@/components/successToast";
+import { ErrorToast } from "@/components/errorToast";
 
 const SignIn = () => {
   const [formValues, setFormValues] = useState<LoginCredentials>({
@@ -30,12 +32,16 @@ const SignIn = () => {
     e.preventDefault();
     try {
       console.log("Form values:", formValues);
+
       const response = await login(formValues).unwrap();
       console.log("login successful:", response);
       dispatch(setUser(response.data));
+
+      SuccessToast("Login successful!!!");
       setJobRedirect(true);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Signup error:", error);
+      ErrorToast(error.data.message || "Invalid email or password!");
     }
   };
 

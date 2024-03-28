@@ -11,6 +11,8 @@ import { redirect } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/lib/store";
 import { setEmail } from "@/lib/features/auth/authSlice";
+import { SuccessToast } from "@/components/successToast";
+import { ErrorToast } from "@/components/errorToast";
 
 const SignUp = () => {
   const [formValues, setFormValues] = useState<SignupCredentials>({
@@ -39,8 +41,10 @@ const SignUp = () => {
       console.log("Signup successful:", response);
       setVerifyRedirect(true);
       dispatch(setEmail(formValues.email));
-    } catch (error) {
+      SuccessToast("Signup successful!!!");
+    } catch (error: any) {
       console.error("Signup error:", error);
+      ErrorToast(error.data.message || "Invalid credential");
     }
   };
 
