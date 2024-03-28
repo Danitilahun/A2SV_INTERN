@@ -31,12 +31,9 @@ const SignIn = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      console.log("Form values:", formValues);
-
       const response = await login(formValues).unwrap();
-      console.log("login successful:", response);
-      dispatch(setUser(response.data));
 
+      dispatch(setUser(response.data));
       SuccessToast("Login successful!!!");
       setJobRedirect(true);
     } catch (error: any) {

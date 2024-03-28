@@ -46,17 +46,15 @@ const VerifyEmail = () => {
   const handleSubmit = async () => {
     const otpCode = otp.join("");
     try {
-      console.log({ otp: otpCode, email: "tiledan2015@gmail.com" });
       const res = await verifyEmail({
         otp: otpCode,
         email: user?.email || "",
       }).unwrap();
+
       setJobRedirect(true);
       SuccessToast("OTP Verified Successfully!");
       dispatch(setUser(res.data));
-      console.log("Email verification successful:", res);
     } catch (err: any) {
-      console.error("Email verification failed:", err);
       ErrorToast(err.data.message || "Invalid OTP. Please try again.");
     }
   };

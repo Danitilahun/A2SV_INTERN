@@ -36,14 +36,11 @@ const SignUp = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      console.log("Form values:", formValues);
-      const response = await signup(formValues).unwrap();
-      console.log("Signup successful:", response);
+      await signup(formValues).unwrap();
       setVerifyRedirect(true);
       dispatch(setEmail(formValues.email));
       SuccessToast("Signup successful!!!");
     } catch (error: any) {
-      console.error("Signup error:", error);
       ErrorToast(error.data.message || "Invalid credential");
     }
   };
