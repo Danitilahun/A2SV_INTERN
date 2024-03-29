@@ -11,7 +11,7 @@ import { AppDispatch } from "@/lib/store";
 import { setEmail, setUser } from "@/lib/features/auth/authSlice";
 import { SuccessToast } from "@/components/successToast";
 import { ErrorToast } from "@/components/errorToast";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 const SignIn = () => {
   const [formValues, setFormValues] = useState<LoginCredentials>({
@@ -38,7 +38,7 @@ const SignIn = () => {
         email: formValues.email,
         password: formValues.password,
         redirect: true,
-        callbackUrl: "/",
+        callbackUrl: "/job",
       });
       console.log("response", response);
       // dispatch(setUser(response));
