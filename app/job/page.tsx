@@ -2,7 +2,7 @@
 import React from "react";
 import { FaAngleDown } from "react-icons/fa6";
 import Link from "next/link";
-import Card from "@/components/Card";
+import Card from "@/components/Card/Card";
 import { useGetOpportunitiesQuery } from "@/lib/api/job/jobSlice";
 
 const Job = () => {

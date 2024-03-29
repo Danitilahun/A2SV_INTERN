@@ -1,13 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import HorizontalLineWithText from "../../components/HorizontalLineWithText";
 import InputField from "../../components/InputField";
 import Link from "next/link";
 import { fields } from "./(constants)/formFields";
-import { redirect } from "next/navigation";
-import { SuccessToast } from "@/components/successToast";
-import { ErrorToast } from "@/components/errorToast";
-import { signIn, useSession } from "next-auth/react";
+import { SuccessToast } from "@/components/Toast/successToast";
+import { ErrorToast } from "@/components/Toast/errorToast";
+import { signIn } from "next-auth/react";
 
 const SignIn = () => {
   const [formValues, setFormValues] = useState<LoginCredentials>({
@@ -17,7 +16,6 @@ const SignIn = () => {
 
   // const [login, { isLoading }] = useLoginMutation();
   // const dispatch = useDispatch<AppDispatch>();
-
   // const [jobRedirect, setJobRedirect] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

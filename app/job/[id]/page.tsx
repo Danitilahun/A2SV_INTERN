@@ -1,7 +1,7 @@
 "use client";
-import DescriptionSection from "@/components/DescriptionSection";
-import IdealCandidateSection from "@/components/IdealCandidateSection";
-import ResponsibilitiesSection from "@/components/ResponsibilitiesSection";
+import DescriptionSection from "@/components/OpportunityDetail/DescriptionSection";
+import IdealCandidateSection from "@/components/OpportunityDetail/IdealCandidateSection";
+import ResponsibilitiesSection from "@/components/OpportunityDetail/ResponsibilitiesSection";
 import WhenWhereSection from "@/components/WhenWhereSection";
 import { useGetOpportunityByIdQuery } from "@/lib/api/job/jobSlice";
 

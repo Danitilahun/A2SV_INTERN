@@ -6,8 +6,8 @@ import { redirect } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootStore } from "@/lib/store";
 import { setUser } from "@/lib/features/auth/authSlice";
-import { SuccessToast } from "@/components/successToast";
-import { ErrorToast } from "@/components/errorToast";
+import { SuccessToast } from "@/components/Toast/successToast";
+import { ErrorToast } from "@/components/Toast/errorToast";
 
 const VerifyEmail = () => {
   const [otp, setOtp] = useState(["", "", "", ""]);

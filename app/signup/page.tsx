@@ -11,8 +11,8 @@ import { redirect } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/lib/store";
 import { setEmail } from "@/lib/features/auth/authSlice";
-import { SuccessToast } from "@/components/successToast";
-import { ErrorToast } from "@/components/errorToast";
+import { SuccessToast } from "@/components/Toast/successToast";
+import { ErrorToast } from "@/components/Toast/errorToast";
 
 const SignUp = () => {
   const [formValues, setFormValues] = useState<SignupCredentials>({
