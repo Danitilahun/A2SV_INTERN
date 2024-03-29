@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "./provider";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import AuthProvider from "./AuthProvider";
 
 const epilogue = Epilogue({ subsets: ["latin"] });
 
@@ -20,10 +21,12 @@ export default function RootLayout({
   return (
     <Providers>
       <html lang="en">
-        <body className={epilogue.className}>
-          <ToastContainer />
-          {children}
-        </body>
+        <AuthProvider>
+          <body className={epilogue.className}>
+            <ToastContainer />
+            {children}
+          </body>
+        </AuthProvider>
       </html>
     </Providers>
   );

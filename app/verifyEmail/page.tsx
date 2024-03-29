@@ -16,7 +16,7 @@ const VerifyEmail = () => {
   const [jobRedirect, setJobRedirect] = useState(false);
   const { user } = useSelector((state: RootStore) => state.auth);
   const dispatch = useDispatch<AppDispatch>();
-  // Countdown timer for resend code
+
   useEffect(() => {
     if (timeLeft === 0) {
       return;

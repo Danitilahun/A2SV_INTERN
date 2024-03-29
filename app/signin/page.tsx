@@ -11,6 +11,7 @@ import { AppDispatch } from "@/lib/store";
 import { setEmail, setUser } from "@/lib/features/auth/authSlice";
 import { SuccessToast } from "@/components/successToast";
 import { ErrorToast } from "@/components/errorToast";
+import { signIn } from "next-auth/react";
 
 const SignIn = () => {
   const [formValues, setFormValues] = useState<LoginCredentials>({
@@ -18,8 +19,8 @@ const SignIn = () => {
     password: "",
   });
 
-  const [login, { isLoading }] = useLoginMutation();
-  const dispatch = useDispatch<AppDispatch>();
+  // const [login, { isLoading }] = useLoginMutation();
+  // const dispatch = useDispatch<AppDispatch>();
 
   const [jobRedirect, setJobRedirect] = useState(false);
 
@@ -30,10 +31,17 @@ const SignIn = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      const response = await login(formValues).unwrap();
 
-      dispatch(setUser(response.data));
+    try {
+      // const response = await login(formValues).unwrap();
+      const response = await signIn("credentials", {
+        email: formValues.email,
+        password: formValues.password,
+        redirect: true,
+        callbackUrl: "/",
+      });
+      console.log("response", response);
+      // dispatch(setUser(response));
       SuccessToast("Login successful!!!");
       setJobRedirect(true);
     } catch (error: any) {
@@ -76,8 +84,8 @@ const SignIn = () => {
 
         <button
           type="submit"
-          disabled={isLoading}
-          style={{ opacity: isLoading ? 0.5 : 1 }}
+          // disabled={isLoading}
+          // style={{ opacity: isLoading ? 0.5 : 1 }}
           className="w-full h-auto rounded-[80px] border text-white bg-primary-500 border-gray-300 px-4 py-3 mx-4 my-2 flex items-center justify-center gap-2"
         >
           Login
