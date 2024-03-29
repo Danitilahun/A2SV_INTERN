@@ -3,7 +3,9 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 // Define an API slice
 export const jobApi = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://akil-backend.onrender.com" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${process.env.NEXT_PUBLIC_APP_API_ENDPOINT}`,
+  }),
   endpoints: (builder) => ({
     getOpportunities: builder.query<Opportunities, void>({
       query: () => "opportunities/search",

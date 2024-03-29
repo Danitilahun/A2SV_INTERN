@@ -1,14 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// interface User {
-//   id: string;
-//   username: string;
-//   email: string;
-// }
-
 export const authApi = createApi({
   reducerPath: "authApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://akil-backend.onrender.com" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${process.env.NEXT_PUBLIC_APP_API_ENDPOINT}`,
+  }),
   endpoints: (builder) => ({
     login: builder.mutation<any, LoginCredentials>({
       query: (credentials) => ({

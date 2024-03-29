@@ -2,7 +2,7 @@
 import DescriptionSection from "@/components/OpportunityDetail/DescriptionSection";
 import IdealCandidateSection from "@/components/OpportunityDetail/IdealCandidateSection";
 import ResponsibilitiesSection from "@/components/OpportunityDetail/ResponsibilitiesSection";
-import WhenWhereSection from "@/components/WhenWhereSection";
+import WhenWhereSection from "@/components/OpportunityDetail/WhenWhereSection";
 import { useGetOpportunityByIdQuery } from "@/lib/api/job/jobSlice";
 
 import React from "react";
