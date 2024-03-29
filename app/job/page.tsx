@@ -4,7 +4,6 @@ import { FaAngleDown } from "react-icons/fa6";
 import Link from "next/link";
 import Card from "@/components/Card";
 import { useGetOpportunitiesQuery } from "@/lib/api/job/jobSlice";
-import { useSession } from "next-auth/react";
 
 const Job = () => {
   // Fetch the opportunities

@@ -4,11 +4,7 @@ import HorizontalLineWithText from "../../components/HorizontalLineWithText";
 import InputField from "../../components/InputField";
 import Link from "next/link";
 import { fields } from "./(constants)/formFields";
-import { useLoginMutation } from "@/lib/api/auth/authSlice";
 import { redirect } from "next/navigation";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/lib/store";
-import { setEmail, setUser } from "@/lib/features/auth/authSlice";
 import { SuccessToast } from "@/components/successToast";
 import { ErrorToast } from "@/components/errorToast";
 import { signIn, useSession } from "next-auth/react";
@@ -22,7 +18,7 @@ const SignIn = () => {
   // const [login, { isLoading }] = useLoginMutation();
   // const dispatch = useDispatch<AppDispatch>();
 
-  const [jobRedirect, setJobRedirect] = useState(false);
+  // const [jobRedirect, setJobRedirect] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -43,18 +39,18 @@ const SignIn = () => {
       console.log("response", response);
       // dispatch(setUser(response));
       SuccessToast("Login successful!!!");
-      setJobRedirect(true);
+      // setJobRedirect(true);
     } catch (error: any) {
       console.error("Signup error:", error);
       ErrorToast(error.data.message || "Invalid email or password!");
     }
   };
 
-  useEffect(() => {
-    if (jobRedirect) {
-      redirect("/job");
-    }
-  }, [jobRedirect]);
+  // useEffect(() => {
+  //   if (jobRedirect) {
+  //     redirect("/job");
+  //   }
+  // }, [jobRedirect]);
   return (
     <div className="text-[14px] flex flex-col gap-4 items-center justify-center absolute top-[141px] left-[1092px] w-[408px] h-[390px] md:w-[calc(100vw - 816px)] md:left-[calc(50% + 408px)] md:transform md:-translate-x-1/2 md:top-[calc(50% - 195px)] lg:w-[calc(100vw - 816px)] lg:left-[calc(50% + 408px)] lg:transform lg:-translate-x-1/2 lg:top-[calc(50% - 195px)] xl:w-[calc(100vw - 816px)] xl:left-[calc(50% + 408px)] xl:transform xl:-translate-x-1/2 xl:top-[calc(50% - 195px)]">
       <div className="text-2xl leading-9 text-center font-extrabold w-[90%]">
