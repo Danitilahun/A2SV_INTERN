@@ -61,7 +61,7 @@ const VerifyEmail = () => {
 
   useEffect(() => {
     if (jobRedirect) {
-      redirect("/job");
+      redirect("/signin");
     }
   }, [jobRedirect]);
 
